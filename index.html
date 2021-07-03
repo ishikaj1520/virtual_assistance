@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0">
+            <title>Home | Chirag Enterprises</title>
+            <link rel="stylesheet" href="style.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,100&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+            <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">  
+    </head>
+    <body>
+
+        <div class="header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="LOGO" width="125px">
+                        </a>
+                    </div>
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="uc.html">About</a></li>
+                            <li><a href="uc.html">Contact</a></li>
+                            <li><a href="account.php">Accounts</a></li>
+                        </ul>
+                    </nav>
+                    <a href="cart.html">
+                        <img src="images/cart.png" alt="CART" width="30px" height="30px">
+                    </a>
+                    <img src="images/menu.png" alt="" class="menu" onclick="menutoggle()">
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <h1>Welcome to our store!</h1>
+                        <p>District wide distributor of household items like
+                            FENA sanitation products and BAMBINO edible products.</p>
+                        <a href="products.html" class="btn">Explore Now &#8594;</a>
+                    </div>
+                    <div class="col-2">
+                        <img src="images/1.png" alt="BACK">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- featured categories -->
+
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Featured Categories</h2>
+            <div class="row">
+                <div class="col-3">
+                    <img src="images/fena.png" alt="FENA" >
+                    <h4>Fabric Care</h4>
+                </div>
+                <div class="col-3">
+                    <img src="images/famus.png" alt="NIP" >
+                    <h4>Personal Care</h4>
+                </div>
+                <div class="col-3">
+                    <img src="images/nip.png" alt="FAMUS" >
+                    <h4>Home Care</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- featured products -->
+
+    <div class="small-container">
+        <h2 class="title">Our Featured Products</h2>
+        <div class="row">
+            <div id="Powder" class="col-4">
+                <a href="product-details.html">
+                    <img src="images/buy1.png" alt="">
+                    <h4>Fena Detergent Powder</h4>
+                </a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>INR 60Rs/KG</p>
+            </div>
+            <div id="Powder" class="col-4">
+                <img src="images/buy2.png" alt="">
+                <h4>Impact Wash</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>INR 90Rs/KG</p>
+            </div>
+            <div class="col-4">
+                <img src="images/buy3.png" alt="">
+                <h4>Fena Detergent Cake</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>INR 10Rs/cake</p>
+            </div>
+            <div id="NIP"class="col-4">
+                <img src="images/buy4.png" alt="">
+                <h4>Nip Washing cake</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>INR 10Rs/cake</p>
+            </div>
+        </div>
+        <h2 class="title">Latest Products</h2>
+        <div class="row">
+            <div id="Powder" class="col-4">
+                <img src="images/buy1.png" alt="">
+                <h4>Fena Detergent Powder</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>INR 60Rs/KG</p>
+            </div>
+            <div id="Powder" class="col-4">
+                <img src="images/buy2.png" alt="">
+                <h4>Impact Wash</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>INR 90Rs/KG</p>
+            </div>
+            <div class="col-4">
+                <img src="images/buy3.png" alt="">
+                <h4>Fena Detergent Cake</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>INR 10Rs/cake</p>
+            </div>
+            <div id="NIP"class="col-4">
+                <img src="images/buy4.png" alt="">
+                <h4>Nip Washing cake</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>INR 10Rs/cake</p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="Powder" class="col-4">
+                <img src="images/buy1.png" alt="">
+                <h4>Fena Detergent Powder</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>INR 60Rs/KG</p>
+            </div>
+            <div id="Powder" class="col-4">
+                <img src="images/buy2.png" alt="">
+                <h4>Impact Wash</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>INR 90Rs/KG</p>
+            </div>
+            <div class="col-4">
+                <img src="images/buy3.png" alt="">
+                <h4>Fena Detergent Cake</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>INR 10Rs/cake</p>
+            </div>
+            <div id="NIP"class="col-4">
+                <img src="images/buy4.png" alt="">
+                <h4>Nip Washing cake</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>INR 10Rs/cake</p>
+            </div>
+        </div>
+    </div>
+<!-- Exclusie -->
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="images/exclusive.png" class="offer-img">
+                </div>
+                <div class="col-2">
+                    <p>Exclusively available on Chirag Enterprises</p>
+                    <h1>Smart Band 4</h1>
+                    <small>Excellent for long workout sessions. Price is very minimal. Get yours now at CE.com exclusively.!(Limited stocks available)</small>
+                    <a href="#" class="btn">Buy Now &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- testimonial -->
+    <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>The fragrance is long lasting and it cleans well. The clothes are better and I'm happy. </p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="images/user-1.png" alt="">
+                    <h3>Sean Parker</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p> The cleansing action is almost the same. Each does what it is intended to do in a good manner.✌🏿</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="images/user-2.png" alt="">
+                    <h3>Harry </h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p> I use it in my top load machine as well. It works good 🙃Provides a good fragrance.😇</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="images/user-3.png" alt="">
+                    <h3>Sejal Sharma</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- brands -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="images/brand-1.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/brand-2.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/brand-3.jpg" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/brand-4.png" alt="">
+                </div>
+                <div class="col-5">
+                    <img src="images/brand-1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- footer -->
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our app.</h3>
+                    <p>Avaialable on almost every premium app store.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="">
+                        <img src="images/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo.png" alt="">
+                    <p>District wide distributor of household items like FENA sanitation products and BAMBINO edible products.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Retrun Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2021 - All rights reserved</p>
+        </div>
+    </div>
+
+<!-- js for toggle menu -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems")
+        MenuItems.style.maxHeight="0px";
+        function menutoggle() {
+            if(MenuItems.style.maxHeight=="0px")
+            {
+                MenuItems.style.maxHeight="200px";
+            }
+            else {
+                 MenuItems.style.maxHeight="0px";
+            }
+        }
+    </script>
+  </body>
+</html>

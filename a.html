@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0">
+            <title>Your Account | Chirag Enterprises</title>
+            <link rel="stylesheet" href="style.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,100&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
+    </head>
+    <body>
+
+<!-- header -->
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="LOGO" width="125px">
+                    </a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="uc.html">About</a></li>
+                        <li><a href="uc.html">Contact</a></li>
+                        <li><a href="account.php">Accounts</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html">
+                    <img src="images/cart.png" alt="CART" width="30px" height="30px">
+                </a>
+                <img src="images/menu.png" alt="" class="menu" onclick="menutoggle()">
+            </div>
+        </div>
+
+        <?php
+            $conn = mysqli_connect("localhost","root");
+            mysqli_select_db($conn ,'CE');
+            session_start();
+            $username=$_SESSION['un'];
+            $sql = "SELECT * FROM cart WHERE Username = '$username'";
+            $result =  mysqli_query($conn, $sql);
+            // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            // $fk = $row["Memb_id"];
+            // $sql = "SELECT Name FROM member WHERE Memb_id = '$fk'";
+            // $result = mysqli_query($conn, $sql);
+
+            // if (mysqli_num_rows($result) > 0) {
+             while($row = mysqli_fetch_assoc($result)) {
+               echo "<center><p style='font-weight:bold;padding:80px;font-size:22px;'>
+               " .$row["Username"]. " - Logged In <br>You have ".$row["nitem"]." items in your cart. <br>
+               The total price is ".$row["price"]."
+               <br /></p></center>";
+         }
+         ?>
+<!-- footer -->
+
+    <footer style="position:absolute;bottom:0;width:100%;">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download our app.</h3>
+                        <p>Avaialable on almost every premium app store.</p>
+                        <div class="app-logo">
+                            <img src="images/play-store.png" alt="">
+                            <img src="images/app-store.png" alt="">
+                        </div>
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="images/logo.png" alt="">
+                        <p>District wide distributor of household items like FENA sanitation products and BAMBINO edible products.</p>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful Links</h3>
+                        <ul>
+                            <li>Coupons</li>
+                            <li>Blog Post</li>
+                            <li>Retrun Policy</li>
+                            <li>Join Affiliate</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow Us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Instagram</li>
+                            <li>Youtube</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <p class="copyright">Copyright 2021 - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+
+<!-- js for toggle menu -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems")
+        MenuItems.style.maxHeight="0px";
+        function menutoggle() {
+            if(MenuItems.style.maxHeight=="0px")
+            {
+                MenuItems.style.maxHeight="200px";
+            }
+            else {
+                 MenuItems.style.maxHeight="0px";
+            }
+        }
+    </script>
+
+  </body>
+</html>
