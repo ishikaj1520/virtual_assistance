@@ -1,0 +1,45 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- inform:
+    use_entities: true
+- order:
+    use_entities: true
+entities: 
+  - orderid
+slots:
+  orderid:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: |
+      Hello! How can I help you?
+  - text: |
+      Hi!
+  utter_ask_email:
+  - text: |
+      What is your Order ID?
+  utter_subscribed:
+  - text: |
+      Wait till i fetch your Order Status
+  - text: Getting your order Status
+actions:
+- '...'
+- utter_greet
+- utter_subscribed
+- action_order
+forms:
+  newsletter_form:
+    required_slots:
+      orderid:
+      - type: from_text
+e2e_actions: []

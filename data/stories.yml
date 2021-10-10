@@ -1,0 +1,10 @@
+stories:
+ - story: greet and order
+   steps:
+   - intent: greet
+   - action: utter_greet
+   - intent: order
+   - action: utter_ask_email
+   - intent: inform
+   - action: action_order
+   - active_loop: newsletter_form

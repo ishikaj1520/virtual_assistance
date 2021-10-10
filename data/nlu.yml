@@ -1,0 +1,33 @@
+nlu:
+- intent: greet
+  examples: |
+    - Hi
+    - Hey!
+    - Hallo
+    - Good day
+    - Good morning
+
+- intent: order
+  examples: |
+    - I want to know the status of my Order
+    - Can you show me the status of my order ?
+    - Order Status ?
+    - order info ?
+    - What is my request Status ?
+    - What is my solicitation Status ?
+    - Would you be able to show me the situation with my request ?
+    - Would you be able to show me my request data ?
+    - Can you show me my order info ?
+    - Would you be able to show me my request data ?
+    - Would you be able to show me my request information ?
+    - I need to know the situation with my request ?
+    - my order information
+    - info of my order
+
+
+- intent: inform
+  examples: |
+    - My order ID is [521067](orderid)
+    - [521067](orderid)
+    - Order ID - [521067](orderid)
+    - Email is [521067](orderid)

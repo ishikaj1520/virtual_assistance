@@ -1,0 +1,14 @@
+responses:
+   utter_greet:
+       - text: |
+           Hello! How can I help you?
+       - text: |
+           Hi!
+   utter_ask_email:
+       - text: |
+           What is your Order ID?
+   utter_subscribed:
+        - text: |
+           Wait till i fetch your Order Status
+       - text: |
+           Getting your order Status
