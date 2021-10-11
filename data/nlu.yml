@@ -27,7 +27,8 @@ nlu:
 
 - intent: inform
   examples: |
-    - My order ID is [521067](orderid)
-    - [521067](orderid)
-    - Order ID - [521067](orderid)
-    - Email is [521067](orderid)
+    - My order ID is [BC022](orderid)
+    - [AB258](orderid)
+    - Order ID - [BC145](orderid)
+    - Order is [BC189](orderid)
+    - My order ID is [AB265](orderid)

@@ -9,8 +9,12 @@
 
 from typing import Any, Text, Dict, List
 
+from requests.models import Response
+
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+import requests
+import json
 
 
 #class ActionHelloWorld(Action):
@@ -35,7 +39,25 @@ class ActionHelloWorld(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-         dispatcher.utter_message(text="Hello World!")
+             orderid = tracker.get_slot("orderid")
+             
+             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'
+             url1 = ''.join([base_url1, orderid])
 
-         return []
+             response = requests.get(url1).json()
+#{"email":"carole_hughlett@hughlett.com","order_id":"BC022"}
+             #data = response.text
+             #parse_json = json.loads(data)
+            # for data in response["email"]:
+               # print(data)
+
+
+
+                      
+             message = response['email'] + response["order_id"]
+
+
+             dispatcher.utter_message(message)
+
+             return []
 
