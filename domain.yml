@@ -11,12 +11,16 @@ intents:
     use_entities: true
 - order:
     use_entities: true
+- admin
+
 entities:
 - orderid
 slots:
   orderid:
-    type: text
-    
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
 responses:
   utter_greet:
   - text: |

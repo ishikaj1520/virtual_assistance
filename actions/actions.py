@@ -15,6 +15,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
 import json
+import re
 
 
 #class ActionHelloWorld(Action):
@@ -51,16 +52,28 @@ class ActionHelloWorld(Action):
             # for data in response["email"]:
                # print(data)
 
-
-
-                      
              message = response['email'] + response["order_id"]
-
-
+             print(message)
              dispatcher.utter_message(message)
-
+             self.authenticate(response, dispatcher)
              return []
 
+     def authenticate(self, response, dispatcher):
+         #print("authenticate")
+         if( response['status']=="hold"):
+           base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='
+           zipcode_url = ''.join([base_zipcode, response['postal']])
+           zip_auth = requests.get(zipcode_url).json()
+           zip_code = response["postal"]
+           print(zip_auth["results"][zip_code][0]["country_code"])
+               #if re.fullmatch("\d{4}|\d{6}", response["postal"])!=True:
+                #  dispatcher.utter_message("Your pincode seems to be invalid. Please provide a valid pincode")
+         else:
+          dispatcher.utter_message("The status of your order is Success! The Product will be delivered soon")
+          #url= "https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/update/BC022"
+          #x = requests.post(url,json={"order_status":"Success"})
+          return[]
+ 
 #class ActionHelloWorld(Action):
 #
 #     def name(self) -> Text:
