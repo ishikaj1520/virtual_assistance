@@ -1,8 +1,8 @@
 rules:
  - rule: activate subscribe form
    steps:
-   - intent: order
-   - action: utter_ask_email
+   - intent: inform
+   - action: newsletter_form
    - active_loop: newsletter_form
 
  - rule: submit form
@@ -11,4 +11,30 @@ rules:
    steps:
    - action: newsletter_form
    - active_loop: null
-   - action: utter_subscribed
+   - action: action_order
+
+ - rule: activate authenticate form
+   steps:
+   - intent: provide
+   - action: auth_form
+   - active_loop: auth_form
+
+ - rule: submit authenticate form
+   condition:
+   - active_loop: auth_form
+   steps:
+   - action: auth_form
+   - active_loop: null
+   - action: action_validation
+
+# - rule: submit authenticate form
+#  condition:
+# - slot_was_set:
+#   - mode: true
+#steps:
+#  - action: auth_form
+#  - active_loop: null
+#  - action: action_validation
+
+
+  

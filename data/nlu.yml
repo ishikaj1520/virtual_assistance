@@ -32,3 +32,21 @@ nlu:
     - Order ID - [BC145](orderid)
     - Order is [BC189](orderid)
     - My order ID is [AB265](orderid)
+
+- intent: provide
+  examples: |
+    - [abcd@gmail.com](email)
+    - My email id is [bot@yahoo.com](email)
+    - [E7A1T3](pincode)
+    - [790035](pincode)
+    - pin code [K831P3](pincode)
+    - this is my pin code : [L4N5C5](pincode)
+    - [M8Y3L6](pincode)
+    - Email id: [abc@gmail.com] and pincode: [V2S2GS]
+
+- intent: admin
+  examples: |
+    - I am admin
+    - Show the failure patterns
+    - Show analytics
+

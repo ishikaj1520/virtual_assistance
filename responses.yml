@@ -4,11 +4,17 @@ responses:
            Hello! How can I help you?
        - text: |
            Hi!
-   utter_ask_email:
+   utter_ask_order_id:
        - text: |
            What is your Order ID?
    utter_subscribed:
-        - text: |
+       - text: |
            Wait till i fetch your Order Status
        - text: |
            Getting your order Status
+   utter_ask_email:
+       - text: |
+          Your email id seems to be incorrect. Please provide valid email id.
+   utter_confirmation:
+       - text: |
+          Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.

@@ -1,10 +1,65 @@
+#stories:
+ #- story: greet and order
+  # steps:
+   #- intent: greet
+   #- action: utter_greet
+   #- intent: order
+  # - action: utter_ask_email
+   #- intent: inform
+   #- action: action_order
+   #- active_loop: newsletter_form
+
 stories:
- - story: greet and order
+ - story: greet 
    steps:
    - intent: greet
    - action: utter_greet
+
+ - story: order
+   steps:
    - intent: order
-   - action: utter_ask_email
+   - action: utter_ask_orderid
    - intent: inform
-   - action: action_order
+   - action: newsletter_form
    - active_loop: newsletter_form
+   - slot_was_set:
+     - orderid: "AB065"
+   - active_loop: null
+   - action: action_order
+
+ - story: provide
+   steps:
+   - intent: provide
+   - action: auth_form
+   - active_loop: auth_form
+   - slot_was_set:
+     - pincode: "V2S2GS"
+   - slot_was_set:
+     - email: "abc@mail.com"
+   - active_loop: null
+   - action: action_validation
+
+ - story: greet 
+   steps:
+   - intent: admin
+   - action: action_admin
+
+   #- intent:provide_email
+   #-  action: auth_form
+   #- active_loop: auth_form
+   #- slot_was_set:
+   # - email: null
+   #- active_loop: null
+   #- action: action_validation
+   #
+   #- intent:mix
+   #-  action: auth_form
+   #- active_loop: auth_form
+   #- slot_was_set:
+   # - email: null
+   #- active_loop: null
+   #- action: action_validation
+  
+   #
+   #
+   #

@@ -2,4 +2,14 @@ forms:
   newsletter_form:
     required_slots:
       orderid:
-      - type: from_text
+      - type: from_entity
+        entity: orderid
+
+  auth_form:
+    required_slots:
+      pincode:
+      - type: from_entity
+        entity: pincode
+      email:
+      - type: from_entity
+        entity: email

@@ -6,42 +6,83 @@ session_config:
   carry_over_slots_to_new_session: true
 intents:
 - greet:
-    use_entities: true
+    use_entities: false
 - inform:
     use_entities: true
 - order:
+    use_entities: false
+- provide:
     use_entities: true
-- admin
+- admin:
+    use_entities: false
 
 entities:
 - orderid
+- email
+- pincode
 slots:
+  mode:
+    type: text
+    influence_conversation: true
   orderid:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: true
+  email:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  pincode:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  
 responses:
   utter_greet:
   - text: |
       Hello! How can I help you?
   - text: |
       Hi!
-  utter_ask_email:
+  utter_ask_orderid:
   - text: |
       What is your Order ID?
   utter_subscribed:
   - text: |
       Wait till i fetch your Order Status
   - text: Getting your order Status
+  utter_ask_email:
+   - text: |
+       Your email id seems to be incorrect. Please provide valid email id.
+  utter_confirmation:
+  - text: |
+      Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
 actions:
 - '...'
 - utter_greet
 - utter_subscribed
 - action_order
+- validate_email_form
+- action_validation
+- utter_ask_orderid
+- utter_ask_email
+- utter_confirmation
+- action_admin
 forms:
   newsletter_form:
     required_slots:
       orderid:
-      - type: from_text
+      - type: from_entity
+        entity: orderid
+  auth_form:
+    required_slots:
+      pincode:
+      - type: from_entity
+        entity: pincode
+      email:
+      - type: from_entity
+        entity: email
+      
 e2e_actions: []
