@@ -16,6 +16,8 @@ from rasa_sdk.executor import CollectingDispatcher
 import requests
 import json
 import re
+from rasa_sdk.events import SlotSet
+
 
 
 #class ActionHelloWorld(Action):
@@ -66,6 +68,8 @@ class ActionHelloWorld(Action):
            zipcode_url = ''.join([base_zipcode, response['postal']])
            zip_auth = requests.get(zipcode_url).json()
            zip_code = response["province"]
+           event1 = SlotSet("email", response['email'])
+           event2 = SlotSet("pincode", response['postal'])
            #print(zip_auth["results"][zip_code][0]["state_code"])
            try:
             if(zip_auth["results"][response['postal']][0]["state_code"]!=zip_code):
@@ -103,56 +107,82 @@ class ActionValidation(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
         pin_valid=False
         email_valid=False
-        if not tracker.get_slot("orderid"):
-          dispatcher.utter_message("Please enter order id first")
+        print("in action validation")
+        base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'
+        url1 = ''.join([base_url1, tracker.get_slot("orderid")])
+        response = requests.get(url1).json()
+        flag1=0
+        flag2=0
+
+        if not tracker.get_slot("pincode"):
+          pincode = response["postal"]
+          pin_valid=True
+
+
         else:
-            #regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
-            if tracker.get_slot("pincode"):
-              pincode = tracker.get_slot("pincode")
-              base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='
+          pincode = tracker.get_slot("pincode")
+          flag1 = 1
+        
+        if not tracker.get_slot("email"):
+          email = response["email"]
+          email_valid=True
+
+        else:
+          email = tracker.get_slot("email")
+          flag2 = 1 
+
+        if not tracker.get_slot("orderid"):
+            dispatcher.utter_message("Please enter order id first")
+        else:
+
+            if flag1:
+              
+              print("Processing pincode")
+              base_zipcode = '  '
               zipcode_url = ''.join([base_zipcode, pincode])
               zip_auth = requests.get(zipcode_url).json()
 
-              base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'
-              url1 = ''.join([base_url1, tracker.get_slot("orderid")])
-              response = requests.get(url1).json()
+              
               zip_code = response["province"]
-              #print(zip_auth["results"][pincode][0]["state_code"])
-              print("Checking pin")
+              print(pincode)
+              print(email)
+              
+              
               try:
+                print("running try block")
                 if(zip_auth["results"][pincode][0]["state_code"]!=zip_code):
                   dispatcher.utter_message("Your pincode seems to be invalid. Please provide a valid pincode")
+                  pin_valid=False
                 else:
                   pin_valid=True
               except:
                 dispatcher.utter_message("Your pincode seems to be invalid. Please provide a valid pincode")
 
-
-            if tracker.get_slot("email"):
+            
+            if flag2:
               regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
-              email=tracker.get_slot("email")
-              if not re.search(regex, email):
+              if not re.search(regex, email): 
                 dispatcher.utter_message("Your email id seems to be invalid. PLease provide a valid email id")
+                email_valid=False
               else:
                 email_valid=True
             
             if(pin_valid and email_valid):
-             
-              url='https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'+ tracker.get_slot("orderid")
-              obj=requests.get(url).json()
-              obj["postal"]=tracker.get_slot("pincode")
-              obj["email"]=tracker.get_slot("email")
-              obj["status"]="Success"
-              url= "https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/update"
-              res= requests.post(url,json=obj)
+                print("Ready to Post")
+                url='https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/update/'+ tracker.get_slot("orderid")
+                sample = {'status' : "Success", "address":response["address"],"postal":pincode,"web":response["web"],"province":response["province"],"city":response["city"],"phone1":response["phone1"],"order_id":response["order_id"],"first_name":response["first_name"],"email":email,"last_name":response["last_name"]}
+                res= requests.put(url, data = sample)
 
-              url='https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'+ tracker.get_slot("orderid")
-              response=requests.get(url).json()
-              if response["status"]=="Success":
-                print("updated")
-              dispatcher.utter_message("Thankyou for the details. The status of your order is Success! The Product will be delivered soon")
+                url1='https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'+ tracker.get_slot("orderid")
+                response=requests.get(url1).json()
+                if response["status"]=="Success":
+                  print("updated")
+                  dispatcher.utter_message("Thankyou for the details. The status of your order is Success!")
+                else:
+                   dispatcher.utter_message("Details could not be updated please try again!")
         return []
 
 

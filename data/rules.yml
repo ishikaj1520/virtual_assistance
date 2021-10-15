@@ -13,19 +13,19 @@ rules:
    - active_loop: null
    - action: action_order
 
- - rule: activate authenticate form
-   steps:
-   - intent: provide
-   - action: auth_form
-   - active_loop: auth_form
+#  - rule: activate authenticate form
+#    steps:
+#    - intent: provide
+#    - action: auth_form
+#    - active_loop: auth_form
 
- - rule: submit authenticate form
-   condition:
-   - active_loop: auth_form
-   steps:
-   - action: auth_form
-   - active_loop: null
-   - action: action_validation
+#  - rule: submit authenticate form
+#    condition:
+#    - active_loop: auth_form
+#    steps:
+#    - action: auth_form
+#    - active_loop: null
+#    - action: action_validation
 
 # - rule: submit authenticate form
 #  condition:

@@ -6,23 +6,24 @@ session_config:
   carry_over_slots_to_new_session: true
 intents:
 - greet:
-    use_entities: false
+    use_entities: []
 - inform:
     use_entities: true
 - order:
-    use_entities: false
+    use_entities: []
 - provide:
     use_entities: true
 - admin:
-    use_entities: false
-
+    use_entities: []
 entities:
 - orderid
 - email
 - pincode
 slots:
   mode:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
   orderid:
     type: rasa.shared.core.slots.TextSlot
@@ -39,7 +40,6 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  
 responses:
   utter_greet:
   - text: |
@@ -54,8 +54,8 @@ responses:
       Wait till i fetch your Order Status
   - text: Getting your order Status
   utter_ask_email:
-   - text: |
-       Your email id seems to be incorrect. Please provide valid email id.
+  - text: |
+      Your email id seems to be incorrect. Please provide valid email id.
   utter_confirmation:
   - text: |
       Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
@@ -74,15 +74,14 @@ forms:
   newsletter_form:
     required_slots:
       orderid:
-      - type: from_entity
-        entity: orderid
+      - entity: orderid
+        type: from_entity
   auth_form:
     required_slots:
-      pincode:
-      - type: from_entity
-        entity: pincode
       email:
-      - type: from_entity
-        entity: email
-      
+      - entity: email
+        type: from_entity
+      pincode:
+      - entity: pincode
+        type: from_entity
 e2e_actions: []

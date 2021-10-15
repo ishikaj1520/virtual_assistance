@@ -1,3 +1,4 @@
+version: "2.0"
 nlu:
 - intent: greet
   examples: |
@@ -6,7 +7,6 @@ nlu:
     - Hallo
     - Good day
     - Good morning
-
 - intent: order
   examples: |
     - I want to know the status of my Order
@@ -18,13 +18,10 @@ nlu:
     - Would you be able to show me the situation with my request ?
     - Would you be able to show me my request data ?
     - Can you show me my order info ?
-    - Would you be able to show me my request data ?
     - Would you be able to show me my request information ?
     - I need to know the situation with my request ?
     - my order information
     - info of my order
-
-
 - intent: inform
   examples: |
     - My order ID is [BC022](orderid)
@@ -32,21 +29,22 @@ nlu:
     - Order ID - [BC145](orderid)
     - Order is [BC189](orderid)
     - My order ID is [AB265](orderid)
-
 - intent: provide
   examples: |
-    - [abcd@gmail.com](email)
-    - My email id is [bot@yahoo.com](email)
     - [E7A1T3](pincode)
     - [790035](pincode)
     - pin code [K831P3](pincode)
     - this is my pin code : [L4N5C5](pincode)
     - [M8Y3L6](pincode)
-    - Email id: [abc@gmail.com] and pincode: [V2S2GS]
-
+    - pincode: [V2S2GS](pincode)
+    - pincode is [V2S2G5](pincode)
+    - email ID is [vaibhav0701@live.com](email)
+    - email is [bhavika@gmail.com](email)
+    - [sidhant265897@example.com](email)
+    - email id [example@example.com](email) pincode [L4N5C5]
+    - pincode [V2S2G5](pincode) email[example12345@example.org](email)
 - intent: admin
   examples: |
     - I am admin
     - Show the failure patterns
     - Show analytics
-
