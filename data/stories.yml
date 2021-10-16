@@ -39,10 +39,32 @@ stories:
    - active_loop: null
    - action: action_validation
 
- - story: greet 
+ - story: admin side
    steps:
    - intent: admin
    - action: action_admin
+   - action: utter_patterns
+
+ - story: failure_day
+   steps:
+   - intent: option_day
+   - action: utter_day
+   - intent: date
+   - action: action_day
+
+ - story: failure_month
+   steps:
+   - intent: option_month
+   - action: utter_month
+   - intent: month
+   - action: action_admin
+
+ - story: failure_year
+   steps:
+   - intent: option_year
+   - action: utter_year
+   - intent: year
+   - action: action_year
 
    #- intent:provide_email
    #-  action: auth_form
@@ -60,6 +82,3 @@ stories:
    #- active_loop: null
    #- action: action_validation
   
-   #
-   #
-   #

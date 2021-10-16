@@ -23,7 +23,7 @@ rules:
    condition:
    - active_loop: auth_form
    steps:
-   - action: auth_form
+   - action: auth_form 
    - active_loop: null
    - action: action_validation
 

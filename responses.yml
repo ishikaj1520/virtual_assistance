@@ -18,3 +18,31 @@ responses:
    utter_confirmation:
        - text: |
           Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
+   utter_password:
+       - text: |
+          Please enter the password.
+   utter_patterns:
+       - condition: 
+          - type: slot
+            name: mode
+            value: "admin"
+         text: |
+          Display the failure patterns on the basis of:
+         buttons:
+         - title: "date"
+           payload: '/date'
+         - title: "month"
+           payload: '/month'
+         - title: "year"
+           payload: '/year'
+  utter_day:
+   - text: |
+          Please enter the date in dd-mm-yyyy format.
+  utter_year:
+   - text: |
+          Please enter the year in yyyy format.
+  utter_month:
+   - text: |
+          Please enter the month and year in mm-yyyy format.
+
+    

@@ -15,7 +15,9 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
 import json
+from rasa_sdk.events import SlotSet
 import re
+import datetime
 
 
 #class ActionHelloWorld(Action):
@@ -51,7 +53,8 @@ class ActionHelloWorld(Action):
              #parse_json = json.loads(data)
             # for data in response["email"]:
                # print(data)
-
+             SlotSet("email", response["email"])
+             SlotSet("pincode", response["postal"])
              message = response['email'] + response["order_id"]
              print(message)
              dispatcher.utter_message(message)
@@ -164,8 +167,135 @@ class ActionAdmin(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-             if(tracker.get_slot("mode")=="admin"):
-                dispatcher.utter_message("Hello admin")
-             else:
+              if(tracker.get_slot("mode")!="admin"):
                 dispatcher.utter_message("Sorry you are not the admin")
-             return []
+              return []
+
+
+class ActionDay(Action):
+
+     def name(self) -> Text:
+         return "action_day"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+             date_string = tracker.get_slot("date")
+             format = '%d-%m-%Y'
+             try:
+              datetime.datetime.strptime(date_string, format)
+             except ValueError:
+              dispatcher.utter_message(response="utter_day")
+              return[]
+
+            #  try:
+            #   base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/date/'+ date_string
+            #  except: 
+            #   dispatcher.utter_message("Data for the given date cannot be fetched")
+            #  #response=requests.get(base_url1).json()
+             message="Total number of failures on"+tracker.get_slot("date")+" are "+ len(response)
+             dispatcher.utter_message(message)
+             pin_failures=0
+             email_failures=0
+             hold=0
+             for entry in len(response):
+              if(response[entry]["status"]=="hold"):
+               base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='+ response[entry]["postal"]
+               zip_auth = requests.get(base_zipcode).json()
+               hold=0
+               if(zip_auth["results"][response['postal']][0]["state_code"]!=response['province']):
+                 pin_failures+=1
+               regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
+               email=response["email"]
+               if not re.search(regex, email):
+                 email_failures+=1
+             message1="Total failures= "+hold
+             message2="Zipcode failures="+pin_failures+ "  Email id failures="+email_failures
+             dispatcher.utter_message(message1)
+             dispatcher.utter_message(message2)
+             return[]
+
+
+class ActionYear(Action):
+
+     def name(self) -> Text:
+         return "action_year"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+             year_string = tracker.get_slot("year")
+             format = '%Y'
+             try:
+              datetime.datetime.strptime(year_string, format)
+             except ValueError:
+              dispatcher.utter_message(response="utter_year")
+              return[]
+             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/date/'+ year_string
+             response=requests.get(base_url1).json()
+             message="Total number of orders on"+tracker.get_slot("date")+" are "+ len(response)
+             dispatcher.utter_message(message)
+             pin_failures=0 
+             email_failures=0
+             hold=0
+             for entry in len(response):
+               if(response[entry]["status"]=="hold"):
+                  base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='+ response[entry]["postal"]
+                  zip_auth = requests.get(base_zipcode).json()
+                  hold+=1
+                  if(zip_auth["results"][response['postal']][0]["state_code"]!=response['province']):
+                    pin_failures+=1
+                  regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
+                  email=response["email"]
+                  if not re.search(regex, email):
+                    email_failures+=1
+             message1="Total failures= "+hold
+             message2="Zipcode failures= "+pin_failures+ "  Email id failures= "+email_failures
+             dispatcher.utter_message(message1)
+             dispatcher.utter_message(message2)
+             return[]
+
+
+class ActionMonth(Action):
+
+     def name(self) -> Text:
+         return "action_month"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+             month_string = tracker.get_slot("month")
+             format = '%m-%Y'
+             try:
+              datetime.datetime.strptime(month_string, format)
+             except ValueError:
+              dispatcher.utter_message(response="utter_month")
+              return[]
+             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/date/'+ month_string
+             response=requests.get(base_url1).json()
+             message="Total number of failures in"+tracker.get_slot("month")+" are "+ len(response)
+             dispatcher.utter_message(message)
+             pin_failures=0
+             email_failures=0
+             hold=0
+             for entry in len(response):
+              if(response[entry]["status"]=="hold"):
+                response[entry]
+                base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='+ response[entry]["postal"]
+                zip_auth = requests.get(base_zipcode).json()  
+                hold+=1    
+                if(zip_auth["results"][response['postal']][0]["state_code"]!=response['province']):
+                  pin_failures+=1
+                regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
+                email=response["email"]
+                if not re.search(regex, email):
+                  email_failures+=1
+             message1="Total failures= "+hold
+             message2="Zipcode failures="+pin_failures+ "  Email id failures="+email_failures
+             dispatcher.utter_message(message1)
+             dispatcher.utter_message(message2)
+             return[]
+
+
+             
+

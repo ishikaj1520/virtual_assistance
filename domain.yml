@@ -15,30 +15,59 @@ intents:
     use_entities: true
 - admin:
     use_entities: false
+- option_day:
+    use_entities: false
+- option_year:
+    use_entities: false
+- option_month:
+    use_entities: false
+- day:
+    use_entities: true
+- year:
+    use_entities: true
+- month:
+    use_entities: true
 
 entities:
 - orderid
 - email
 - pincode
+- date
+- year
+- month
+
 slots:
   mode:
     type: text
     influence_conversation: true
+    initial_value: admin
   orderid:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
-    auto_fill: true
+    auto_fill: false
     influence_conversation: true
   email:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
-    auto_fill: true
+    auto_fill: false
     influence_conversation: false
   pincode:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
-    auto_fill: true
+    auto_fill: false
     influence_conversation: true
+  date:
+    type: text 
+    auto_fill: true
+  year:
+    type: text
+    auto_fill: true
+  month:
+    type: text
+    auto_fill: true
+
+
+    
   
 responses:
   utter_greet:
@@ -59,6 +88,30 @@ responses:
   utter_confirmation:
   - text: |
       Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
+  utter_patterns:
+    - condition: 
+        - type: slot
+          name: mode
+          value: "admin"
+      text: |
+        Display the failure patterns on the basis of:
+      buttons:
+      - title: "day"
+        payload: /option_day
+      - title: "month"
+        payload: /option_month
+      - title: "year"
+        payload: /option_year
+  utter_day:
+   - text: |
+          Please enter the date in dd-mm-yyyy format.
+  utter_year:
+   - text: |
+          Please enter the year in yyyy format.
+  utter_month:
+   - text: |
+          Please enter the month and year in mm-yyyy format.
+
 actions:
 - '...'
 - utter_greet
@@ -70,6 +123,14 @@ actions:
 - utter_ask_email
 - utter_confirmation
 - action_admin
+- action_day
+- action_year
+- action_month
+- utter_patterns
+- utter_day
+- utter_year
+- utter_month
+
 forms:
   newsletter_form:
     required_slots:
