@@ -141,7 +141,7 @@ class ActionValidation(Action):
             if flag1:
               
               print("Processing pincode")
-              base_zipcode = '  '
+              base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='
               zipcode_url = ''.join([base_zipcode, pincode])
               zip_auth = requests.get(zipcode_url).json()
 
