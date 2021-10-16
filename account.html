@@ -3,12 +3,12 @@
     <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width,initial-scale=1.0">
-            <title>Accounts | Chirag Enterprises</title>
-            <link rel="stylesheet" href="style.css">
+            <title>Accounts | Dell Enterprises</title>
+            <link rel="stylesheet" href="style1.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,100&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
-            <link rel="shortcut icon" href="images/favicon.png">  
+            <link rel="shortcut icon" href="images/Dell.png">  
     </head>
     <body>
 
@@ -17,21 +17,21 @@
             <div class="navbar">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="images/logo.png" alt="LOGO" width="125px">
+                        <img src="images/Dell.png" alt="LOGO" width="100px">
                     </a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="uc.html">About</a></li>
-                        <li><a href="uc.html">Contact</a></li>
-                        <li><a href="account.html">Accounts</a></li>
+                        <!-- <li><a href="products.html">Products</a></li> -->
+                        <!-- <li><a href="uc.html">About</a></li> -->
+                        <!-- <li><a href="uc.html">Contact</a></li> -->
+                        <li><a href="account.html">Login</a></li>
                     </ul>
                 </nav>
-                <a href="cart.html">
+                <!-- <a href="cart.html">
                     <img src="images/cart.png" alt="CART" width="30px" height="30px">
-                </a>
+                </a> -->
                 <img src="images/menu.png" alt="" class="menu" onclick="menutoggle()">
             </div>
         </div>
@@ -40,28 +40,28 @@
     <div class="account-page">
         <div class="container">
             <div class="row">
-                <div class="col-2">
+                <!-- <div class="col-2">
                     <img id="img" src="images/1.png" alt="">
-                </div>
-                <div class="col-2">
+                </div> -->
+                <!-- <div class="col-2"> -->
                     <div class="form-container">
                         <div class="form-btn">
-                            <span onclick="login()">Login</span>
-                            <span onclick="register()">Register</span>
+                            <span>Login</span>
+                            <!-- <span onclick="register()">Register</span> -->
                             <hr id="Indicator">
-                            <form id="LoginForm" action="login.php" method="post">
+                            <form id="LoginForm"  method="post">
                                 <input type="text" placeholder="Username" name="Username" id="Username">
                                 <input type="password" placeholder="Password" name="Password" id="Password">
-                                <button type="submit" class="btn">Login</button>
+                                <button type="submit" class="btn" onclick="validate()">Login</button>
                                 <a href="">Forgot Password?</a>
                             </form>
-                            <form id="RegForm" action="register.php" method="post">
+                            <!-- <form id="RegForm" action="register.php" method="post">
                                 <input type="text" placeholder="Username" name="Username" id="Username">
                                 <input type="email" placeholder="Email" name="Email" id="Email">
                                 <input type="password" placeholder="Password" name="Password" id="Password">
                                 <button type="submit" class="btn">Register</button>
-                            </form>
-                        </div>
+                            </form> -->
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="footer-col-2">
                 <img src="images/logo.png" alt="">
-                <p>District wide distributor of household items like FENA sanitation products and BAMBINO edible products.</p>
+                <!-- <p>District wide distributor of household items like FENA sanitation products and BAMBINO edible products.</p> -->
             </div>
             <div class="footer-col-3">
                 <h3>Useful Links</h3>
@@ -124,20 +124,21 @@
     </script>
 
 <!-- js for toggle form -->
-    <script>
+ <script src="login.js"></script>
+    <!-- <script>
         var LoginForm = document.getElementById("LoginForm");
-        var RegForm = document.getElementById("RegForm");
-        var Indicator = document.getElementById("Indicator");
-        function register(){
-            RegForm.style.transform = "translateX(0px)"
-            LoginForm.style.transform = "translateX(0px)"
-            Indicator.style.transform = "translateX(100px)"
-        }
+        // var RegForm = document.getElementById("RegForm");
+        // var Indicator = document.getElementById("Indicator");
+        // function register(){
+        //     RegForm.style.transform = "translateX(0px)"
+        //     LoginForm.style.transform = "translateX(0px)"
+        //     Indicator.style.transform = "translateX(100px)"
+        // }
         function login(){
-            RegForm.style.transform = "translateX(300px)"
+            // RegForm.style.transform = "translateX(300px)"
             LoginForm.style.transform = "translateX(300px)"
-            Indicator.style.transform = "translateX(0px)"
+            // Indicator.style.transform = "translateX(100px)"
         }
-    </script>
+    </script> -->
   </body>
 </html>
