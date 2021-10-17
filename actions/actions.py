@@ -185,21 +185,6 @@ class ActionValidation(Action):
                 else:
                    dispatcher.utter_message("Details could not be updated please try again!")
         return []
-#code works till here
-
-class ActionAdmin(Action):
-
-     def name(self) -> Text:
-         return "action_admin"
-
-     def run(self, dispatcher: CollectingDispatcher,
-             tracker: Tracker,
-             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-             if(tracker.get_slot("mode")=="admin"):
-                dispatcher.utter_message("Hello admin")
-             else:
-                dispatcher.utter_message("Sorry you are not the admin")
-             return []
  
 
 class ActionAdmin(Action):
@@ -260,8 +245,8 @@ class ActionDay(Action):
                email=response[entry]["email"]
                if not re.search(regex, email):
                  email_failures+=1
-             message1="Total failures= "+str(hold)
-             message2="Zipcode failures="+str(pin_failures)+ "  Email id failures="+str(email_failures)
+             message1="Total failures:"+str(hold)
+             message2="Zipcode failures:"+str(pin_failures)+ "  Email id failures:"+str(email_failures)
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]
@@ -305,8 +290,8 @@ class ActionYear(Action):
                   email=response[entry]["email"]
                   if not re.search(regex, email):
                     email_failures+=1
-             message1="Total failures= "+str(hold)
-             message2="Zipcode failures= "+str(pin_failures)+ "  Email id failures= "+str(email_failures)
+             message1="Total failures:"+str(hold)
+             message2="Zipcode failures:"+str(pin_failures)+ "  Email id failures:"+str(email_failures)
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]
@@ -352,8 +337,8 @@ class ActionMonth(Action):
                 email=response[entry]["email"]
                 if not re.search(regex, email):
                   email_failures+=1
-             message1="Total failures= "+str(hold)
-             message2="Zipcode failures="+str(pin_failures)+ "  Email id failures="+str(email_failures)
+             message1="Total failures:"+str(hold)
+             message2="Zipcode failures:"+str(pin_failures)+ "  Email id failures:"+str(email_failures)
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]

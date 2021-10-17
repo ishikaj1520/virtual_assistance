@@ -71,8 +71,8 @@ nlu:
     - [08-09-2020](date)
     - date: [23-10-2021](date)
     - [23-01-2021](date)
-    - the date is [03-12-2021](year)
-    - failure patterns for the date [23-01-2019](year)
+    - the date is [03-12-2021](date)
+    - failure patterns for the date [23-01-2019](date)
     - [08-12-2021](date)
 - intent: year
   examples: |
@@ -89,3 +89,9 @@ nlu:
     - the month is [10-2021](month)
     - the month is [08-2021](month)
     - failure patterns for the month [02-2019](month)
+- intent: option_pdf
+  examples: |
+    - I want pdf
+    - pdf
+    - Show me the pdf
+    - download pdf

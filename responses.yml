@@ -1,12 +1,14 @@
 responses:
    utter_greet:
        - text: |
-           Hello! How can I help you?
+           Hello! Welcome to Dell! How can I help you?
        - text: |
-           Hi!
+           Hi! Welcome to Dell! How can I help you?
    utter_ask_order_id:
        - text: |
            What is your Order ID?
+       - text: |
+           May I know your Order ID?
    utter_subscribed:
        - text: |
            Wait till i fetch your Order Status
@@ -18,3 +20,28 @@ responses:
    utter_confirmation:
        - text: |
           Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
+   utter_patterns:
+   - buttons:
+    - payload: /option_day
+      title: Day
+    - payload: /option_month
+      title: Month
+    - payload: /option_year
+      title: Year
+    - payload: /option_pdf
+      title: Download pdf
+    condition:
+    - name: mode
+      type: slot
+      value: admin
+    text: |
+      Display the failure patterns on the basis of:
+  utter_day:
+    - text: |
+      Please enter the date in dd-mm-yyyy format.
+  utter_year:
+    - text: |
+      Please enter the year in yyyy format.
+  utter_month:
+    - text: |
+      Please enter the month and year in mm-yyyy format.

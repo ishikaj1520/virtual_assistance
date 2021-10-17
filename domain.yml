@@ -17,6 +17,8 @@ intents:
     use_entities: []
 - option_month:
     use_entities: []
+- option_pdf:
+    use_entities: []
 - date
 - year
 - month
@@ -80,6 +82,8 @@ responses:
       title: month
     - payload: /option_year
       title: year
+    - payload: /option_pdf
+      title: Download pdf
     condition:
     - name: mode
       type: slot
@@ -113,6 +117,7 @@ actions:
 - utter_day
 - utter_year
 - utter_month
+- action_pdf
 forms:
   newsletter_form:
     required_slots:

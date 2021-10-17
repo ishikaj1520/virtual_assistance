@@ -65,6 +65,12 @@ stories:
    - intent: option_day
    - action: utter_day  
 
+ - story: download_pdf
+   steps:
+   - intent: option_pdf
+   - action: action_pdf
+
+
    #- intent:provide_email
    #-  action: auth_form
    #- active_loop: auth_form
