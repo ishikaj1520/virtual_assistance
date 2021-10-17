@@ -94,21 +94,18 @@ responses:
   - text: |
       Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
   utter_patterns:
-  - buttons:
-    - payload: /option_day
-      title: day
-    - payload: /option_month
-      title: month
-    - payload: /option_year
-      title: year
-    - payload: /option_pdf
-      title: Download pdf
-    condition:
-    - name: mode
-      type: slot
-      value: admin
-    text: |
-      Display the failure patterns on the basis of:
+  - text: "Display the failure patterns on the basis of:"
+    custom:
+      payload: quickReplies
+      data:
+      - title: Day
+        payload: /option_day
+      - title:  Month
+        payload: /option_month
+      - title: Year
+        payload: /option_year
+      - title: Download pdf
+        payload: /option_pdf  
   utter_day:
   - text: |
       Please enter the date in dd-mm-yyyy format.

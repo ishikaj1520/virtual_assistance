@@ -13,7 +13,6 @@ rules:
    - active_loop: null
    - action: action_order
 
-
  - rule: failure_day
    steps:
    - intent: date

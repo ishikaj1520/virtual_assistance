@@ -55,7 +55,7 @@ class ActionHelloWorld(Action):
             # for data in response["email"]:
                # print(data)
 
-             message = response['email'] + response["order_id"]
+             message = "Registered Email ID: "+response['email']+ "    Order ID:" + response["order_id"]
              print(message)
              dispatcher.utter_message(message)
              self.authenticate(response, dispatcher)
@@ -117,6 +117,7 @@ class ActionValidation(Action):
         response = requests.get(url1).json()
         flag1=0
         flag2=0
+        print(tracker.get_slot("pincode"))
 
         if not tracker.get_slot("pincode"):
           pincode = response["postal"]
@@ -174,8 +175,9 @@ class ActionValidation(Action):
             if(pin_valid and email_valid):
                 print("Ready to Post")
                 url='https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/update/'+ tracker.get_slot("orderid")
-                sample = {'status' : "Success", "address":response["address"],"postal":pincode,"web":response["web"],"province":response["province"],"city":response["city"],"phone1":response["phone1"],"order_id":response["order_id"],"first_name":response["first_name"],"email":email,"last_name":response["last_name"]}
-                res= requests.put(url, data = sample)
+                sample = {'status' : "Success", "address":response["address"],"postal":pincode,"web":response["web"],"province":response["province"],"city":response["city"],"phone1":response["phone1"],"order_id":response["order_id"],"first_name":response["first_name"],"email":email,"last_name":response["last_name"],"date": response["date"] }
+                res = requests.put(url, data = sample)
+                print(pincode)
 
                 url1='https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/'+ tracker.get_slot("orderid")
                 response=requests.get(url1).json()

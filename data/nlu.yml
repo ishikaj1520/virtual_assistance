@@ -43,6 +43,7 @@ nlu:
     - [sidhant265897@example.com](email)
     - email id [example@example.com](email) pincode [L4N5C5]
     - pincode [V2S2G5](pincode) email[example12345@example.org](email)
+    
 - intent: admin
   examples: |
     - I am admin
