@@ -3,103 +3,148 @@
     <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width,initial-scale=1.0">
-            <title>Your Account | Dell Enterprises</title>
-            <link rel="stylesheet" href="style.css">
+            <title>Admin | Dell Enterprises</title>
+            <style>
+            
+              .footer .container{
+                  display: inline;
+                  /* margin-top: 20px; */
+              }
+              .footer-col-1{
+                  text-align: center;
+              }
+              .footer-col-4{
+                margin-top: 10px;
+              }
+                </style>
+            <link rel="stylesheet" href="style1.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;1,100&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
             <link rel="shortcut icon" href="images/Dell.png" type="image/x-icon"> 
+
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+            <meta content="utf-8" http-equiv="encoding" />
+        
+            <!--Import Google Icon Font-->
+            <link
+              href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet"
+            />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+              rel="stylesheet"
+            />
+            <link
+              href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap"
+              rel="stylesheet"
+            />
+        
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+              rel="stylesheet"
+            />
+        
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+              rel="stylesheet"
+            />
+        
+            <!--Import Font Awesome Icon Font-->
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+              integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+              crossorigin="anonymous"
+            />
+        
+            <!--Import materialize.css-->
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href="static/css/materialize.min.css"
+            />
+        
+            <!--Main css-->
+            <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
 
 <!-- header -->
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/dellLogo.jpg" alt="LOGO" width="125px">
-                    </a>
-                </div>
-                <nav>
-                    <ul id="MenuItems">
-                        <li><a href="index.html">Home</a></li>
-                        <!-- <li><a href="products.html">Products</a></li> -->
-                        <!-- <li><a href="uc.html">About</a></li> -->
-                        <!-- <li><a href="uc.html">Contact</a></li> -->
-                        <li><a href="account.php">Accounts</a></li>
-                    </ul>
-                </nav>
-                <!-- <a href="cart.html">
-                    <img src="images/cart.png" alt="CART" width="30px" height="30px">
-                </a> -->
-                <img src="images/menu.png" alt="" class="menu" onclick="menutoggle()">
+<div class="header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/Dell.png" alt="LOGO" width="100px">
+                </a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <!-- <li><a href="account.html">Login</a></li> -->
+                </ul>
+            </nav>
+          
+            <img src="images/menu.png" alt="" class="menu" onclick="menutoggle()">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Welcome Admin!</h1>
+                <!-- <p>Get 10% cashback, instant discount on UPI/netbanking & more.</p> -->
+                <!-- <a href="products.html" class="btn">Explore Now &#8594;</a> -->
+            </div>
+            <div class="col-2">
+                <img src="images/1.png" alt="BACK">
             </div>
         </div>
+    </div>
+</div>
 
-        <?php
-            $conn = mysqli_connect("localhost","root");
-            mysqli_select_db($conn ,'CE');
-            session_start();
-            $username=$_SESSION['un'];
-            $sql = "SELECT * FROM cart WHERE Username = '$username'";
-            $result =  mysqli_query($conn, $sql);
-            // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            // $fk = $row["Memb_id"];
-            // $sql = "SELECT Name FROM member WHERE Memb_id = '$fk'";
-            // $result = mysqli_query($conn, $sql);
-
-            // if (mysqli_num_rows($result) > 0) {
-             while($row = mysqli_fetch_assoc($result)) {
-               echo "<center><p style='font-weight:bold;padding:80px;font-size:22px;'>
-               " .$row["Username"]. " - Logged In <br>You have ".$row["nitem"]." items in your cart. <br>
-               The total price is ".$row["price"]."
-               <br /></p></center>";
-         }
-         ?>
-<!-- footer -->
-
-    <footer style="position:absolute;bottom:0;width:100%;">
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col-1">
-                        <h3>Download our app.</h3>
-                        <p>Avaialable on almost every premium app store.</p>
-                        <div class="app-logo">
-                            <img src="images/play-store.png" alt="">
-                            <img src="images/app-store.png" alt="">
-                        </div>
-                    </div>
-                    <div class="footer-col-2">
-                        <img src="images/logo.png" alt="">
-                        <!-- <p>District wide distributor of household items like FENA sanitation products and BAMBINO edible products.</p> -->
-                    </div>
-                    <div class="footer-col-3">
-                        <h3>Useful Links</h3>
-                        <ul>
-                            <li>Coupons</li>
-                            <li>Blog Post</li>
-                            <li>Retrun Policy</li>
-                            <li>Join Affiliate</li>
-                        </ul>
-                    </div>
-                    <div class="footer-col-4">
-                        <h3>Follow Us</h3>
-                        <ul>
-                            <li>Facebook</li>
-                            <li>Twitter</li>
-                            <li>Instagram</li>
-                            <li>Youtube</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-                <p class="copyright">Copyright 2021 - All rights reserved</p>
-            </div>
-        </div>
-    </footer>
-
-
+<div class="footer">
+  <div class="container">
+      <div class="row">
+          <div class="footer-col-1">
+              <h3>Download our app.</h3>
+              <p>Avaialable on almost every premium app store.</p>
+              <div class="app-logo">
+                  <img src="images/play-store.png" alt="">
+                  <img src="images/app-store.png" alt="">
+              </div>
+          </div>
+          
+          <div class="footer-col-2">
+              <img src="images/logo.png" alt="">
+          </div>
+          <div class="footer-col-3">
+              <h3>Useful Links</h3>
+              <ul>
+                  <li>Coupons</li>
+                  <li>Blog Post</li>
+                  <li>Retrun Policy</li>
+                  <li>Join Affiliate</li>
+              </ul>
+          </div>
+          <div class="footer-col-4">
+              <h3>Follow Us</h3>
+              <ul>
+                  <li>Facebook</li>
+                  <li>Twitter</li>
+                  <li>Instagram</li>
+                  <li>Youtube</li>
+              </ul>
+          </div>
+     
+      </div>
+      <hr>
+      <p class="copyright">Copyright 2021 - All rights reserved</p>
+  </div>
+</div>
 <!-- js for toggle menu -->
     <script>
         var MenuItems = document.getElementById("MenuItems")
@@ -114,6 +159,77 @@
             }
         }
     </script>
+     <div class="container">
+        <!-- Modal for rendering the charts, declare this if you want to render charts, 
+           else you remove the modal -->
+        <div id="modal1" class="modal">
+          <canvas id="modal-chart"></canvas>
+        </div>
+  
+        <!--chatbot widget -->
+        <div class="widget">
+          <div class="chat_header">
+            <!--Add the name of the bot here -->
+            <span class="chat_header_title">Sara</span>
+            <span class="dropdown-trigger" href="#" data-target="dropdown1">
+              <i class="material-icons"> more_vert </i>
+            </span>
+  
+            <!-- Dropdown menu-->
+            <ul id="dropdown1" class="dropdown-content">
+              <li><a href="#" id="clear">Clear</a></li>
+              <li><a href="#" id="restart">Restart</a></li>
+              <li><a href="#" id="close">Close</a></li>
+            </ul>
+          </div>
+  
+          <!--Chatbot contents goes here -->
+          <div class="chats" id="chats">
+            <div class="clearfix"></div>
+          </div>
+  
+          <!--keypad for user to type the message -->
+          <div class="keypad">
+            <textarea
+              id="userInput"
+              placeholder="Type a message..."
+              class="usrInput"
+            ></textarea>
+            <div id="sendButton">
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+  
+        <!--bot profile-->
+        <div class="profile_div" id="profile_div">
+          <img class="imgProfile" src="static/img/botAvatar.png" />
+        </div>
+  
+        <!-- Bot pop-up intro -->
+        <div class="tap-target" data-target="profile_div">
+          <div class="tap-target-content">
+            <h5 class="white-text">Hey there 👋</h5>
+            <p class="white-text">
+              I can help and answer questions related to your order.
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <!--JavaScript at end of body for optimized loading-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script
+        type="text/javascript"
+        src="static/js/lib/materialize.min.js"
+      ></script>
+      <script src="static/js/lib/uuid.min.js"></script>
+      <!--Main Script -->
+      <script type="text/javascript" src="static/js/script.js"></script>
+  
+      <!--Chart.js Script -->
+      <script type="text/javascript" src="static/js/lib/chart.min.js"></script>
+      <script type="text/javascript" src="static/js/lib/showdown.min.js"></script>
 
   </body>
 </html>

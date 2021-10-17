@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  margin-top: 0cm;
 }
 body{
     font-family: 'Poppins', sans-serif !important;
@@ -59,11 +60,16 @@ p{
 .btn{
     display: inline-block;
     /* background: #ff523b; */
-    background: black;
+    background:black;
     color: white;
     padding: 8px 30px;
+    /* padding: 8px; */
     margin: 30px 0;
     border-radius: 100px;
+    align-items: center !important;
+}
+.btn p{
+    text-align: center;
 }
 .btn:hover{
     background:darkgrey;
@@ -219,23 +225,27 @@ small{
 
 /* footer */
 .footer{
+    /* margin-top:10px; */
+  
     background:#000;
     color: #8a8a8a;
     font-size: 14px;
-    padding: 60px 0 20px;
-    display: flex;
+    padding: 0;
+    /* padding: 60px 0 20px; */
+    /* display: flex; */
     /* flex-basis: auto; */
 }
 .footer p{
     color: #8a8a8a;
+    max-width: 100%;
 }
 .footer h3{
     color: #fff;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .footer-col-1, .footer-col-2, .footer-col-4{
-    min-width: 250px;
-    margin-bottom: 30px !important;
+    min-width: 350px;
+    /* margin-bottom: 30px !important; */
     
 }
 .footer-col-1{
@@ -252,6 +262,7 @@ small{
 .footer-col-3,.footer-col-4{
     flex-basis: 12%;
     text-align: center !important;
+
 }
 ul{
     padding-left: 3px;

@@ -1,5 +1,6 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: 'Poppins', sans-serif;
   background-size: cover;
 }
 
@@ -180,11 +181,13 @@ blockquote {
   display: inline-block;
   /* float: right; */
   margin-right: 30px;
+  /* margin-bottom: 10px; */
   text-align: center;
   padding: 5px;
   font-size: 20px;
   cursor: pointer;
   color: #85C1E9;
+  /* align-items: center; */
 }
 
 .imgProfile {
