@@ -245,6 +245,13 @@ class ActionDay(Action):
                email=response[entry]["email"]
                if not re.search(regex, email):
                  email_failures+=1
+             zipcode = pin_failures
+             email = email_failures
+             success = len(response) - zipcode - email
+             data={ "title": "Failure Patterns", "labels": [ "Success", "Email Failure", "Zip code Failures" ], "backgroundColor": [ "#36a2eb", "#ffcd56", "#ff6384" ], "chartsData": [ success, email, zipcode  ], "chartType": "pie", "displayLegend": "true" }
+             message={ "payload": "chart", "data": data }
+             dispatcher.utter_message(text="Here are the Failure details",json_message=message)
+
              message1="Total failures:"+str(hold)
              message2="Zipcode failures:"+str(pin_failures)+ "  Email id failures:"+str(email_failures)
              dispatcher.utter_message(message1)
@@ -290,6 +297,13 @@ class ActionYear(Action):
                   email=response[entry]["email"]
                   if not re.search(regex, email):
                     email_failures+=1
+             zipcode = pin_failures
+             email = email_failures
+             success = len(response) - zipcode - email
+             data={ "title": "Failure Patterns", "labels": [ "Success", "Email Failure", "Zip code Failures" ], "backgroundColor": [ "#36a2eb", "#ffcd56", "#ff6384" ], "chartsData": [ success, email, zipcode  ], "chartType": "pie", "displayLegend": "true" }
+             message={ "payload": "chart", "data": data }
+             dispatcher.utter_message(text="Here are the Failure details",json_message=message)
+
              message1="Total failures:"+str(hold)
              message2="Zipcode failures:"+str(pin_failures)+ "  Email id failures:"+str(email_failures)
              dispatcher.utter_message(message1)
@@ -337,6 +351,13 @@ class ActionMonth(Action):
                 email=response[entry]["email"]
                 if not re.search(regex, email):
                   email_failures+=1
+             zipcode = pin_failures
+             email = email_failures
+             success = len(response) - zipcode - email
+             data={ "title": "Failure Patterns", "labels": [ "Success", "Email Failure", "Zip code Failures" ], "backgroundColor": [ "#36a2eb", "#ffcd56", "#ff6384" ], "chartsData": [ success, email, zipcode  ], "chartType": "pie", "displayLegend": "true" }
+             message={ "payload": "chart", "data": data }
+             dispatcher.utter_message(text="Here are the Failure details",json_message=message)
+
              message1="Total failures:"+str(hold)
              message2="Zipcode failures:"+str(pin_failures)+ "  Email id failures:"+str(email_failures)
              dispatcher.utter_message(message1)
@@ -352,5 +373,11 @@ class ActionPdf(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
-             dispatcher.utter_message("Downloading pdf")  
-             return[]
+            dispatcher.utter_message("Downloading pdf")  
+            data = {
+            payload:"pdf_attachment",
+            title: "Failure Patterns",
+            url: "https://www.orimi.com/pdf-test.pdf"
+            }
+            dispatcher.utter_message(json_message=data)
+            return[]

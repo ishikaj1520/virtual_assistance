@@ -45,3 +45,9 @@ responses:
   utter_month:
     - text: |
       Please enter the month and year in mm-yyyy format.
+  utter_pdf:
+    - text: "Here is the PDF."
+      custom: 
+        payload: pdf_attachment
+        title: "Failure Patterns"
+        url: "https://www.orimi.com/pdf-test.pdf"

@@ -68,7 +68,7 @@ stories:
  - story: download_pdf
    steps:
    - intent: option_pdf
-   - action: action_pdf
+   - action: utter_pdf
 
 
    #- intent:provide_email

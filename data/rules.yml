@@ -26,6 +26,10 @@ rules:
    - intent: year
    - action: action_year
 
+ - rule: download_pdf
+   steps:
+   - intent: option_pdf
+   - action: utter_pdf
 
 #  - rule: activate authenticate form
 #    steps:

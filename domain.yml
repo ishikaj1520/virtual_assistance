@@ -1,14 +1,18 @@
 version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
 - greet:
     use_entities: []
-- inform
+- inform:
+    use_entities: true
 - order:
     use_entities: []
-- provide
+- provide:
+    use_entities: true
 - admin:
     use_entities: []
 - option_day:
@@ -19,9 +23,12 @@ intents:
     use_entities: []
 - option_pdf:
     use_entities: []
-- date
-- year
-- month
+- date:
+    use_entities: true
+- year:
+    use_entities: true
+- month:
+    use_entities: true
 entities:
 - orderid
 - email
@@ -31,29 +38,39 @@ entities:
 - month
 slots:
   mode:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
     initial_value: admin
+    auto_fill: true
     influence_conversation: true
   orderid:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: true
   email:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   pincode:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: true
   date:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
   year:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
   month:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: true
 responses:
   utter_greet:
@@ -101,6 +118,12 @@ responses:
   utter_month:
   - text: |
       Please enter the month and year in mm-yyyy format.
+  utter_pdf:
+  - custom:
+      payload: pdf_attachment
+      title: Failure Patterns
+      url: https://www.orimi.com/pdf-test.pdf
+    text: Here is the PDF.
 actions:
 - '...'
 - utter_greet
@@ -120,6 +143,7 @@ actions:
 - utter_year
 - utter_month
 - action_pdf
+- utter_pdf
 forms:
   newsletter_form:
     required_slots:
@@ -134,3 +158,4 @@ forms:
       pincode:
       - entity: pincode
         type: from_entity
+e2e_actions: []
