@@ -1,44 +1,57 @@
 version: '2.0'
-config:
-  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
 - greet:
     use_entities: []
-- inform:
-    use_entities: true
+- inform
 - order:
     use_entities: []
-- provide:
-    use_entities: true
+- provide
 - admin:
     use_entities: []
+- option_day:
+    use_entities: []
+- option_year:
+    use_entities: []
+- option_month:
+    use_entities: []
+- date
+- year
+- month
 entities:
 - orderid
 - email
 - pincode
+- date
+- year
+- month
 slots:
   mode:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
+    initial_value: admin
     influence_conversation: true
   orderid:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
+    auto_fill: false
     influence_conversation: true
   email:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
+    auto_fill: false
     influence_conversation: false
   pincode:
-    type: rasa.shared.core.slots.TextSlot
-    initial_value: null
-    auto_fill: true
+    type: text
+    auto_fill: false
+    influence_conversation: true
+  date:
+    type: text
+    influence_conversation: true
+  year:
+    type: text
+    influence_conversation: true
+  month:
+    type: text
     influence_conversation: true
 responses:
   utter_greet:
@@ -59,6 +72,29 @@ responses:
   utter_confirmation:
   - text: |
       Thankyou for the details. Your order status is 'Success'! You will receive your order shortly.
+  utter_patterns:
+  - buttons:
+    - payload: /option_day
+      title: day
+    - payload: /option_month
+      title: month
+    - payload: /option_year
+      title: year
+    condition:
+    - name: mode
+      type: slot
+      value: admin
+    text: |
+      Display the failure patterns on the basis of:
+  utter_day:
+  - text: |
+      Please enter the date in dd-mm-yyyy format.
+  utter_year:
+  - text: |
+      Please enter the year in yyyy format.
+  utter_month:
+  - text: |
+      Please enter the month and year in mm-yyyy format.
 actions:
 - '...'
 - utter_greet
@@ -70,6 +106,13 @@ actions:
 - utter_ask_email
 - utter_confirmation
 - action_admin
+- action_day
+- action_year
+- action_month
+- utter_patterns
+- utter_day
+- utter_year
+- utter_month
 forms:
   newsletter_form:
     required_slots:
@@ -84,4 +127,3 @@ forms:
       pincode:
       - entity: pincode
         type: from_entity
-e2e_actions: []

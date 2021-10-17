@@ -48,3 +48,44 @@ nlu:
     - I am admin
     - Show the failure patterns
     - Show analytics
+    - enter admin mode
+    - access admin side
+    - Admin
+- intent: option_day
+  examples: |
+    - date
+    - according to date
+    - day-wise
+- intent: option_year
+  examples: |
+    - year
+    - according to year
+    - yearly
+- intent: option_month
+  examples: |
+    - month
+    - according to month
+    - month-wise
+- intent: date
+  examples: |
+    - [08-09-2020](date)
+    - date: [23-10-2021](date)
+    - [23-01-2021](date)
+    - the date is [03-12-2021](year)
+    - failure patterns for the date [23-01-2019](year)
+    - [08-12-2021](date)
+- intent: year
+  examples: |
+    - [2021](year)
+    - year: [2021](year)
+    - [2020](year)
+    - the year is [2021](year)
+    - failure patterns for the year [2019](year)
+    - [2019](year)
+- intent: month
+  examples: |
+    - [08-2021](month)
+    - month: [10-2020](month)
+    - the month is [10-2021](month)
+    - the month is [08-2021](month)
+    - failure patterns for the month [02-2019](month)
