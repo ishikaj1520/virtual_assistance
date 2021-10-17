@@ -188,29 +188,30 @@ class ActionDay(Action):
               dispatcher.utter_message(response="utter_day")
               return[]
 
-            #  try:
-            #   base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/date/'+ date_string
-            #  except: 
-            #   dispatcher.utter_message("Data for the given date cannot be fetched")
-            #  #response=requests.get(base_url1).json()
-             message="Total number of failures on"+tracker.get_slot("date")+" are "+ len(response)
+             try:
+              base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/date/'+ date_string
+             except: 
+              dispatcher.utter_message("Data for the given date cannot be fetched")
+              return[]
+             response=requests.get(base_url1).json()
+             message="Total number of orders on "+tracker.get_slot("date")+" are "+ str(len(response))
              dispatcher.utter_message(message)
              pin_failures=0
              email_failures=0
              hold=0
-             for entry in len(response):
+             for entry in range(len(response)): 
               if(response[entry]["status"]=="hold"):
                base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='+ response[entry]["postal"]
                zip_auth = requests.get(base_zipcode).json()
                hold=0
-               if(zip_auth["results"][response['postal']][0]["state_code"]!=response['province']):
+               if(zip_auth["results"][response[entry]['postal']][0]["state_code"]!=response[entry]['province']):
                  pin_failures+=1
                regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
-               email=response["email"]
+               email=response[entry]["email"]
                if not re.search(regex, email):
                  email_failures+=1
-             message1="Total failures= "+hold
-             message2="Zipcode failures="+pin_failures+ "  Email id failures="+email_failures
+             message1="Total failures= "+str(hold)
+             message2="Zipcode failures="+str(pin_failures)+ "  Email id failures="+str(email_failures)
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]
@@ -231,26 +232,27 @@ class ActionYear(Action):
              except ValueError:
               dispatcher.utter_message(response="utter_year")
               return[]
-             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/date/'+ year_string
+             year_string="31-12-"+year_string
+             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/year/'+ year_string
              response=requests.get(base_url1).json()
-             message="Total number of orders on"+tracker.get_slot("date")+" are "+ len(response)
+             message="Total number of orders in "+tracker.get_slot("year")+" are "+ str(len(response))
              dispatcher.utter_message(message)
              pin_failures=0 
              email_failures=0
              hold=0
-             for entry in len(response):
+             for entry in range(len(response)): 
                if(response[entry]["status"]=="hold"):
                   base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='+ response[entry]["postal"]
                   zip_auth = requests.get(base_zipcode).json()
                   hold+=1
-                  if(zip_auth["results"][response['postal']][0]["state_code"]!=response['province']):
+                  if(zip_auth["results"][response[entry]['postal']][0]["state_code"]!=response[entry]['province']):
                     pin_failures+=1
                   regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
-                  email=response["email"]
+                  email=response[entry]["email"]
                   if not re.search(regex, email):
                     email_failures+=1
-             message1="Total failures= "+hold
-             message2="Zipcode failures= "+pin_failures+ "  Email id failures= "+email_failures
+             message1="Total failures= "+str(hold)
+             message2="Zipcode failures= "+str(pin_failures)+ "  Email id failures= "+str(email_failures)
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]
@@ -271,27 +273,27 @@ class ActionMonth(Action):
              except ValueError:
               dispatcher.utter_message(response="utter_month")
               return[]
-             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/read/date/'+ month_string
+             month_string="31-"+ month_string
+             base_url1 = 'https://us-central1-virtual-assistance-1.cloudfunctions.net/app/api/month/'+ month_string
              response=requests.get(base_url1).json()
-             message="Total number of failures in"+tracker.get_slot("month")+" are "+ len(response)
+             message="Total number of orders in "+tracker.get_slot("month")+" are "+ str(len(response))
              dispatcher.utter_message(message)
              pin_failures=0
              email_failures=0
              hold=0
-             for entry in len(response):
+             for entry in range(len(response)): 
               if(response[entry]["status"]=="hold"):
-                response[entry]
                 base_zipcode = 'https://app.zipcodebase.com/api/v1/search?apikey=d263f8e0-2ced-11ec-a591-333aa69c9333&codes='+ response[entry]["postal"]
                 zip_auth = requests.get(base_zipcode).json()  
                 hold+=1    
-                if(zip_auth["results"][response['postal']][0]["state_code"]!=response['province']):
+                if(zip_auth["results"][response[entry]['postal']][0]["state_code"]!=response[entry]['province']):
                   pin_failures+=1
                 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
-                email=response["email"]
+                email=response[entry]["email"]
                 if not re.search(regex, email):
                   email_failures+=1
-             message1="Total failures= "+hold
-             message2="Zipcode failures="+pin_failures+ "  Email id failures="+email_failures
+             message1="Total failures= "+str(hold)
+             message2="Zipcode failures="+str(pin_failures)+ "  Email id failures="+str(email_failures)
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]

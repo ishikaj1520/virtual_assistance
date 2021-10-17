@@ -57,7 +57,7 @@ stories:
    - intent: option_month
    - action: utter_month
    - intent: month
-   - action: action_admin
+   - action: action_month
 
  - story: failure_year
    steps:
