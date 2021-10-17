@@ -15,6 +15,8 @@ body{
 nav{
   flex: 1 !important;
   text-align: right !important;
+  /* width: 500px; */
+  display: inline;
 }
 nav ul{
   display: inline-block;
@@ -63,7 +65,7 @@ p{
     background:black;
     color: white;
     padding: 8px 30px;
-    /* padding: 8px; */
+    padding-bottom: 3px;
     margin: 30px 0;
     border-radius: 100px;
     align-items: center !important;
@@ -98,7 +100,7 @@ p{
 .small-container{
     /* max-width: 1200px; */
     /* margin: auto; */
-    padding: 0 25px;
+    padding: 0 35px;
 }
 .small-container h2{
     
@@ -226,7 +228,6 @@ small{
 /* footer */
 .footer{
     /* margin-top:10px; */
-  
     background:#000;
     color: #8a8a8a;
     font-size: 14px;
