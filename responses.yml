@@ -3,7 +3,7 @@ responses:
        - text: |
            Hello! Welcome to Dell! How can I help you?
        - text: |
-           Hi! Welcome to Dell! How can I help you?
+           Hi! Welcome to Dell! What can I do for you?
    utter_ask_order_id:
        - text: |
            What is your Order ID?

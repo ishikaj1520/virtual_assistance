@@ -342,3 +342,15 @@ class ActionMonth(Action):
              dispatcher.utter_message(message1)
              dispatcher.utter_message(message2)
              return[]
+
+
+class ActionPdf(Action):
+
+     def name(self) -> Text:
+         return "action_pdf"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]: 
+             dispatcher.utter_message("Downloading pdf")  
+             return[]

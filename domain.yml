@@ -58,12 +58,14 @@ slots:
 responses:
   utter_greet:
   - text: |
-      Hello! How can I help you?
+      Hello! Welcome to Dell! How can I help you?
   - text: |
-      Hi!
+      Hi! Welcome to Dell! What can I do for you?
   utter_ask_orderid:
   - text: |
       What is your Order ID?
+  - text: |
+      May I know your Order ID?
   utter_subscribed:
   - text: |
       Wait till i fetch your Order Status
